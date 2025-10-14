@@ -1,4 +1,4 @@
-**Basic Bash Script with Docker**
+**Bash Script with Docker**
 =================================
 
 🎯 **Objective**
