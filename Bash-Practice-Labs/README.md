@@ -184,8 +184,8 @@ After completing the main lab, try these exercises to strengthen your skills:
 
 4.  **Task 4:** Redirect all output (success and error logs) from your script to a file named **lab2_output.log**.
 
-    ```bash
-   ./lab2\_script.sh > lab2\_output.log 2>&1
+   	```bash
+   	./lab2\_script.sh > lab2\_output.log 2>&1
     ```
 
 5.  **Task 5:** Modify the script to display the container’s IP address after it starts.
