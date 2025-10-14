@@ -113,7 +113,7 @@ You should see the **Nginx welcome page**.
 
 *   docker ps lists all **running containers**.
     
-*   grep -q searches quietly for the container name **nginx-container**.If it’s found, it means the container is running successfully.
+*   grep -q searches quietly for the container name **nginx-container**. If it’s found, it means the container is running successfully.
     
 
 ### 7\. echo "Lab 2 tasks completed."
@@ -191,6 +191,6 @@ After completing the main lab, try these exercises to strengthen your skills:
 5.  **Task 5:** Modify the script to display the container’s IP address after it starts.
 Hint: Use:
 
-```bash
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx-container
-```
+	```bash
+	docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx-container
+	```
