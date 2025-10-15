@@ -40,7 +40,52 @@ This script will use **conditional logic** (if, else, and exit) to make decision
 📜 **Bash Script: lab2\_conditional\_script.sh**
 ------------------------------------------------
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   #!/bin/bash  # Task 1: Check if Docker is installed  echo "Checking if Docker is installed..."  if ! command -v docker &> /dev/null; then      echo "Docker is not installed. Please install Docker before running this script."      exit 1  else      echo "Docker is installed."  fi  # Task 2: Pull Nginx Docker image  echo "Pulling Nginx Docker image..."  docker pull nginx  # Check if image pull was successful  if [ $? -eq 0 ]; then      echo "Nginx image pulled successfully."  else      echo "Failed to pull Nginx image. Exiting script."      exit 1  fi  # Task 3: Check if a container with the same name already exists  if docker ps -a --format '{{.Names}}' | grep -q "^nginx-container$"; then      echo "A container named 'nginx-container' already exists. Removing it..."      docker rm -f nginx-container  fi  # Task 4: Run a new Nginx container  echo "Starting a new Nginx container..."  docker run -d -p 8080:80 --name nginx-container nginx  # Task 5: Verify if the container is running  if docker ps | grep -q nginx-container; then      echo "Nginx container is running successfully."      echo "You can access it at http://localhost:8080"  else      echo "Container failed to start."      exit 1  fi  # End of script  echo "Lab 2 - Conditional Bash Script completed successfully."   `
+```bash
+#!/bin/bash
+
+# Task 1: Check if Docker is installed
+echo "Checking if Docker is installed..."
+if ! command -v docker &> /dev/null; then
+    echo "Docker is not installed. Please install Docker before running this script."
+    exit 1
+else
+    echo "Docker is installed."
+fi
+
+# Task 2: Pull Nginx Docker image
+echo "Pulling Nginx Docker image..."
+docker pull nginx
+
+# Check if image pull was successful
+if [ $? -eq 0 ]; then
+    echo "Nginx image pulled successfully."
+else
+    echo "Failed to pull Nginx image. Exiting script."
+    exit 1
+fi
+
+# Task 3: Check if a container with the same name already exists
+if docker ps -a --format '{{.Names}}' | grep -q "^nginx-container$"; then
+    echo "A container named 'nginx-container' already exists. Removing it..."
+    docker rm -f nginx-container
+fi
+
+# Task 4: Run a new Nginx container
+echo "Starting a new Nginx container..."
+docker run -d -p 8080:80 --name nginx-container nginx
+
+# Task 5: Verify if the container is running
+if docker ps | grep -q nginx-container; then
+    echo "Nginx container is running successfully."
+    echo "You can access it at http://localhost:8080"
+else
+    echo "Container failed to start."
+    exit 1
+fi
+
+# End of script
+echo "Lab 2 - Conditional Bash Script completed successfully."
+```
 
 🧱 **Step-by-Step Explanation (Word-by-Word)**
 ----------------------------------------------
@@ -62,7 +107,9 @@ This line is called a **shebang**.It tells the system that this file should be r
 
 If Docker is missing, the script shows:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Docker is not installed. Please install Docker before running this script.   `
+```kotlin   
+Docker is not installed. Please install Docker before running this script.
+```
 
 and then stops using exit 1.
 
@@ -79,13 +126,17 @@ This command **downloads the Nginx image** from Docker Hub.If it’s already dow
 
 If successful, it prints:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Nginx image pulled successfully.   `
+```arduino
+Nginx image pulled successfully.
+```
 
 Otherwise, it prints a failure message and exits the script.
 
 ### 5\. Checking for existing containers
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   if docker ps -a --format '{{.Names}}' | grep -q "^nginx-container$"; then   `
+```bash   
+if docker ps -a --format '{{.Names}}' | grep -q "^nginx-container$"; then
+```
 
 *   docker ps -a lists all containers (running or stopped).
     
@@ -94,13 +145,17 @@ Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQL
 *   grep -q searches for the name **nginx-container** quietly (no output).If found, the script removes it:
     
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   docker rm -f nginx-container   `
+```bash   
+docker rm -f nginx-container
+```
 
 This ensures there’s no naming conflict before creating a new container.
 
 ### 6\. Running the container
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   docker run -d -p 8080:80 --name nginx-container nginx   `
+```   
+docker run -d -p 8080:80 --name nginx-container nginx
+```
 
 *   docker run → Start a new container.
     
@@ -115,13 +170,17 @@ Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQL
 
 After running, you can open your browser and visit:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   http://localhost:8080   `
+```arduino
+http://localhost:8080
+```
 
 You should see the Nginx welcome page.
 
 ### 7\. Verifying container status
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   if docker ps | grep -q nginx-container; then   `
+```bash
+if docker ps | grep -q nginx-container; then
+```
 
 This checks if the container is currently running.If yes, it prints the success message with the URL.Otherwise, it shows a failure message.
 
@@ -137,23 +196,34 @@ This checks if the container is currently running.If yes, it prints the success 
 
 ### Step 1: Create a new file
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   nano lab2_conditional_script.sh   `
+```bash
+nano lab2_conditional_script.sh
+```
 
 Paste the script into the file, save, and exit.
 
 ### Step 2: Make it executable
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   chmod +x lab2_conditional_script.sh   `
+```bash
+chmod +x lab2_conditional_script.sh
+```
 
 This gives permission to run the script as a program.
 
 ### Step 3: Execute the script
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   ./lab2_conditional_script.sh   `
+```bash
+./lab2_conditional_script.sh
+```
 
 You will see messages for each step such as:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Checking if Docker is installed...  Pulling Nginx Docker image...  Starting a new Nginx container...  Nginx container is running successfully.   `
+```arduino
+Checking if Docker is installed...
+Pulling Nginx Docker image...
+Starting a new Nginx container...
+Nginx container is running successfully.
+```
 
 🧾 **Summary**
 --------------
@@ -184,7 +254,9 @@ Modify the script to pull and run the **httpd (Apache)** image instead of Nginx.
 
 Add a condition that first checks if the **nginx** image already exists locally using:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   docker images | grep nginx   `
+```bash
+docker images | grep nginx
+```
 
 If it exists, skip pulling again.
 
@@ -192,17 +264,25 @@ If it exists, skip pulling again.
 
 Add steps at the end of the script to **stop and remove** the container automatically after a few seconds using:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   sleep 5  docker stop nginx-container  docker rm nginx-container   `
+```bash
+sleep 5
+docker stop nginx-container
+docker rm nginx-container
+```
 
 ### **Task 4: Add Logging**
 
 Modify the script so that all output (both standard and error messages) is saved to a file named:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   lab2_conditional_output.log   `
+```lua 
+lab2_conditional_output.log
+```
 
 Hint:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   ./lab2_conditional_script.sh > lab2_conditional_output.log 2>&1   `
+```bash
+./lab2_conditional_script.sh > lab2_conditional_output.log 2>&1
+```
 
 ### **Task 5: Display Container Details**
 
@@ -217,4 +297,6 @@ After the container starts, print:
 
 Use this command for help:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   docker inspect nginx-container   `
+```bash
+docker inspect nginx-container
+```
