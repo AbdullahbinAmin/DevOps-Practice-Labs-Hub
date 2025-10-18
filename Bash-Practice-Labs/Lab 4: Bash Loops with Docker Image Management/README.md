@@ -1,4 +1,4 @@
-🧠 **Lab 3: Bash Loops with Docker Image Management**
+🧠 **Lab 4: Bash Loops with Docker Image Management**
 =====================================================
 
 This version explains **every command and word clearly**, assumes no prior experience, and includes **all missing details** for smooth execution.
