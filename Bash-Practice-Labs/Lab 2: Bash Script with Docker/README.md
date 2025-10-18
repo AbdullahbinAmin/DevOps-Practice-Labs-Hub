@@ -1,4 +1,4 @@
-**Bash Script with Docker**
+**Lab 2: Bash Script with Docker**
 =================================
 
 🎯 **Objective**
