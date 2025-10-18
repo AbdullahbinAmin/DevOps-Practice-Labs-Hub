@@ -134,7 +134,9 @@ Let’s break down every part of the script so it’s easy to understand.
 
 ### 1\. Shebang Line
 
-`#!/bin/bash`
+```bash
+#!/bin/bash
+```
 
 *   This tells the operating system to use the **Bash shell** to run this script.
     
@@ -145,7 +147,13 @@ Let’s break down every part of the script so it’s easy to understand.
 
 ### 2\. pull\_image Function
 
-`pull_image() {     local image_name="$1"     echo "Pulling the Docker image: $image_name"     docker pull "$image_name" }`
+```bash
+pull_image() {
+    local image_name="$1"
+    echo "Pulling the Docker image: $image_name"
+    docker pull "$image_name"
+}
+```
 
 *   `pull_image()` defines a **function** named `pull_image`.
     
@@ -174,7 +182,13 @@ Let’s break down every part of the script so it’s easy to understand.
 
 ### 3\. run\_container Function
 
-`run_container() {     local image_name="$1"     echo "Running the Docker container based on: $image_name"     docker run -it --rm --name "$image_name-container" "$image_name" }`
+```bash
+run_container() {
+    local image_name="$1"
+    echo "Running the Docker container based on: $image_name"
+    docker run -it --rm --name "$image_name-container" "$image_name"
+}
+```
 
 *   Defines a new function called `run_container`.
     
@@ -197,7 +211,13 @@ Let’s break down every part of the script so it’s easy to understand.
 
 ### 4\. stop\_container Function
 
-`stop_container() {     local container_name="$1"     echo "Stopping the Docker container: $container_name"     docker stop "$container_name" }`
+```bash
+stop_container() {
+    local container_name="$1"
+    echo "Stopping the Docker container: $container_name"
+    docker stop "$container_name"
+}
+```
 
 *   This function stops a running container.
     
@@ -216,7 +236,21 @@ docker stop nginx-container
 
 ### 5\. main Function (Main Workflow)
 
-`main() {     read -p "Enter the name of the Docker image to pull and run: " image_name      pull_image "$image_name"     run_container "$image_name"      read -p "Do you want to stop the container? (yes/no): " stop_choice     if [ "$stop_choice" == "yes" ]; then         stop_container "$image_name-container"     else         echo "Container is still running. You can manually stop it later."     fi }`
+```bash
+main() {
+    read -p "Enter the name of the Docker image to pull and run: " image_name
+
+    pull_image "$image_name"
+    run_container "$image_name"
+
+    read -p "Do you want to stop the container? (yes/no): " stop_choice
+    if [ "$stop_choice" == "yes" ]; then
+        stop_container "$image_name-container"
+    else
+        echo "Container is still running. You can manually stop it later."
+    fi
+}
+```
 
 *   The **main function** acts like the central controller of the script.
     
@@ -237,7 +271,9 @@ docker stop nginx-container
 
 ### 6\. Starting the Script
 
-`main`
+```bash
+main
+```
 
 *   This line **calls** the `main` function.
     
