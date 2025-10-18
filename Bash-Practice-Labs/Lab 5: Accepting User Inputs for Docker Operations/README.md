@@ -1,4 +1,4 @@
-# Lab 4: Accepting User Inputs for Docker Operations
+# Lab 5: Accepting User Inputs for Docker Operations
 
 ## Objective
 
