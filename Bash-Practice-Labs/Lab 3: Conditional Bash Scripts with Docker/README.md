@@ -1,4 +1,4 @@
-🧠 **Lab 2: Conditional Bash Scripts with Docker**
+🧠 **Lab 3: Conditional Bash Scripts with Docker**
 ==================================================
 
 This version uses **easy language**, includes **every step**, explains **each line of code in detail**, and ends with **5 practice tasks** to help learners go beyond the basics.
